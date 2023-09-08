@@ -94,7 +94,7 @@ default_args = {
 with DAG(
     dag_id="greenery_kids_data_pipeline",
     default_args=default_args,
-    schedule=None,
+    schedule="@daily",
     catchup=False,
     tags=["DEB", "2023", "greenery"],
 ):
