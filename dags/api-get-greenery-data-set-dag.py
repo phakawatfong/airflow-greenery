@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils import timezone
 
-from  script.main_api_module import extract_data_from_api
+from script.main_api_module import extract_data_from_api
 
 table_list = ["addresses", "events", "order-items", "orders", "products", "promos", "users"]
 
