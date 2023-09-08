@@ -1,2 +1,5 @@
 *.json
 *.conf
+logs/
+.env
+__pycache__/
