@@ -1,5 +1,7 @@
 #!/bin/sh
 
+table_name_param=$1
+
 check_file_num=$(ls -lrt /opt/airflow/data/* | wc -l)
 
 echo "number of files : ${check_file_num}"
