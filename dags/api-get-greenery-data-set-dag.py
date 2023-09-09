@@ -4,6 +4,7 @@ from airflow.operators.bash import BashOperator
 from airflow.utils import timezone
 
 from script.main_api_module import extract_data_from_api
+from script.import_csv_to_gcs import import_csv_to_gcs
 
 table_list = ["addresses", "events", "order-items", "orders", "products", "promos", "users"]
 
@@ -35,7 +36,15 @@ with DAG(
 
         )
 
+        import_csv_to_gcs_parse_args = PythonOperator(
+            task_id = f"import_table_{table_name}_to_gcs",
+            python_callable=import_csv_to_gcs,
+            op_kwargs={"file_name" : table_name },
+
+        )
+
+
         # Task dependencies
-        extract_data_parse_args >> check_return_code
+        extract_data_parse_args >> check_return_code >> import_csv_to_gcs_parse_args
 
 
